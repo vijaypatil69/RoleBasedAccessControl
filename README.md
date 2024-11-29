@@ -190,8 +190,9 @@ store session information.
 
 * Token Expiration: JWT tokens expire after 8 hours, enhancing security by limiting the window for unauthorized use.
 Role-Based Access Control (RBAC): Only users with specific roles (like admin) can access certain protected resources.
-API Endpoints
 
+
+:- (API Endpoints)
 
 1. User Registration (POST /user/register)
 This API allows new users to register with their personal details. The password is securely hashed before being saved.
