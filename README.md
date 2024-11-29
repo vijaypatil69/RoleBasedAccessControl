@@ -9,25 +9,25 @@ Overview
 
 * Key Features
 
-1 User Registration: New users can register with essential details such as their first name, last name, email, mobile number,
+1. User Registration: New users can register with essential details such as their first name, last name, email, mobile number,
  password, gender, and role.
 
-2 Passwords are securely encrypted using BCrypt hashing for secure storage.
+2. Passwords are securely encrypted using BCrypt hashing for secure storage.
 The system assigns roles such as user or admin, dictating what resources they can access.
 
-3 User Authentication (Login): Users authenticate using their email and password.
+3. User Authentication (Login): Users authenticate using their email and password.
 Upon successful authentication, a JWT is generated and returned. This JWT contains the user's email and role information.
 The token is used for subsequent requests to verify the user's identity.
 
-4 Role-Based Access Control (RBAC): The system enforces different access levels based on the user’s role (e.g., admin or user).
+4. Role-Based Access Control (RBAC): The system enforces different access levels based on the user’s role (e.g., admin or user).
 Admin users have access to administrative endpoints such as creating and managing users.
 Regular users can only access their own profile.
 User Profile Management:
 
-5 Authenticated users can view their profile details (first name, last name, email, role) by sending the 
+5. Authenticated users can view their profile details (first name, last name, email, role) by sending the 
 JWT token in the request header.
 
-6 User Logout: Upon logout, the JWT token is removed from the active session, ensuring that it can no longer be used for future requests.
+6. User Logout: Upon logout, the JWT token is removed from the active session, ensuring that it can no longer be used for future requests.
 
 
 Technologies Used
