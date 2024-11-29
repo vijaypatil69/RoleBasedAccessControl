@@ -35,6 +35,7 @@ User Logout:
 
 Upon logout, the JWT token is removed from the active session, ensuring that it can no longer be used for future requests.
 
+
 Technologies Used
 Spring Boot: To build the backend API with minimal configuration.
 Spring Data JPA: For managing database interactions.
@@ -46,6 +47,7 @@ Bouncy Castle: To enhance cryptographic operations.
 
 Database Configuration
 This project uses H2 Database for local storage in development:
+
 
 properties
 Copy code
@@ -60,45 +62,55 @@ spring.h2.console.enabled=true
 spring.h2.console.path=/h2-console
 The H2 console is enabled at /h2-console, allowing you to interact with the database via a web interface.
 
+
+
 Dependencies
 Below are the dependencies required for this project:
 
 xml
 Copy code
 <dependencies>
+
     <dependency>
         <groupId>org.springframework.boot</groupId>
         <artifactId>spring-boot-starter-web</artifactId>
     </dependency>
+
     <dependency>
         <groupId>com.h2database</groupId>
         <artifactId>h2</artifactId>
     </dependency>
+
     <dependency>
         <groupId>io.jsonwebtoken</groupId>
         <artifactId>jjwt-api</artifactId>
         <version>0.11.5</version>
     </dependency>
+
     <dependency>
         <groupId>io.jsonwebtoken</groupId>
         <artifactId>jjwt-impl</artifactId>
         <version>0.11.5</version>
     </dependency>
+
     <dependency>
         <groupId>io.jsonwebtoken</groupId>
         <artifactId>jjwt-jackson</artifactId>
         <version>0.11.5</version>
     </dependency>
+
     <dependency>
         <groupId>org.bouncycastle</groupId>
         <artifactId>bcprov-jdk15to18</artifactId>
         <version>1.78</version>
     </dependency>
+
     <dependency>
         <groupId>org.springframework.boot</groupId>
         <artifactId>spring-boot-starter-test</artifactId>
         <scope>test</scope>
     </dependency>
+
     <dependency>
         <groupId>org.springframework.boot</groupId>
         <artifactId>spring-boot-starter-data-jpa</artifactId>
@@ -170,12 +182,16 @@ Example:
 If a user with the user role tries to access an admin resource, they will be denied access.
 Admins can access all resources, including protected admin endpoints.
 Security Features Implemented:
+
 Password Hashing: All passwords are hashed using BCrypt before being stored in the database.
 JWT-based Authentication: Stateless authentication using signed JWTs to ensure that the server does not need to 
 store session information.
+
 Token Expiration: JWT tokens expire after 8 hours, enhancing security by limiting the window for unauthorized use.
 Role-Based Access Control (RBAC): Only users with specific roles (like admin) can access certain protected resources.
 API Endpoints
+
+
 1. User Registration (POST /user/register)
 This API allows new users to register with their personal details. The password is securely hashed before being saved.
 
@@ -199,6 +215,8 @@ Copy code
 {
     "message": "User registered successfully!"
 }
+
+
 2. User Login (POST /user/login)
 Users authenticate by providing their email and password. If successful, a JWT token is returned.
 
@@ -217,6 +235,8 @@ Copy code
 {
     "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9..."
 }
+
+
 3. User Profile (POST /user/profile)
 This endpoint returns the profile of the authenticated user. The JWT token is sent in the request header for authentication.
 
@@ -236,6 +256,8 @@ Copy code
     "gender": "male",
     "role": "user"
 }
+
+
 4. User Logout (POST /user/logout)
 The user sends the JWT token in the header, and the system removes it from the active session, invalidating the token.
 
