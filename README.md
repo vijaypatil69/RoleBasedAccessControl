@@ -42,7 +42,9 @@ Technologies Used
 
 * Spring Security (custom implementation): Used for ensuring security with JWT-based authentication and role management.
 
-* BCrypt: A cryptographic algorithm used for securely hashing passwords.
+* Argon2: A modern and secure cryptographic algorithm designed for hashing passwords. 
+It is resistant to both brute-force and parallelized attacks. This project uses Argon2 to securely hash
+ and store user passwords, ensuring enhanced protection against unauthorized access.
 
 * Bouncy Castle: To enhance cryptographic operations.
 
