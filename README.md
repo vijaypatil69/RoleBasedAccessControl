@@ -50,7 +50,7 @@ This project uses H2 Database for local storage in development:
 
 
 properties
-Copy code
+
 spring.datasource.url=jdbc:h2:mem:h2db:testdb
 spring.datasource.driver-class-name=org.h2.Driver
 spring.datasource.username=sa
@@ -60,6 +60,7 @@ spring.jpa.hibernate.ddl-auto=create
 spring.jpa.show-sql=true
 spring.h2.console.enabled=true
 spring.h2.console.path=/h2-console
+
 The H2 console is enabled at /h2-console, allowing you to interact with the database via a web interface.
 
 
@@ -68,7 +69,7 @@ Dependencies
 Below are the dependencies required for this project:
 
 xml
-Copy code
+
 <dependencies>
 
     <dependency>
@@ -132,22 +133,27 @@ User logs in with email and password.
 The backend verifies the credentials.
 If successful, a JWT token is generated.
 The client stores the token for future requests.
+
+
 Login API (POST /user/login)
+
 Request Body:
 
 json
-Copy code
 {
     "emailId": "user@example.com",
     "password": "password123"
 }
+
+
 Response:
 
 json
-Copy code
 {
     "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9..."
 }
+
+
 The JWT is signed using a secret key and is valid for 8 hours. This ensures that the token is only valid for a
  limited period, providing an additional layer of security.
 
@@ -155,11 +161,12 @@ Password Encryption
 Passwords are hashed using the BCrypt algorithm to ensure they are stored securely. BCrypt provides a strong, 
 one-way hash function, which makes it difficult to retrieve the original password from the hash.
 
+
 Passwords are never stored in plain text in the database.
 When a user logs in, the application compares the entered password with the hashed version stored in the database.
 Password Hashing in Registration:
-java
-Copy code
+
+
 @Autowired
 private BCryptPasswordEncoder passwordEncoder;
 
@@ -168,6 +175,8 @@ public String registerUser(UserRequestBody userRequestBody) {
     userRepository.save(new User(userRequestBody, hashedPassword));
     return "User registered successfully!";
 }
+
+
 Authorization
 Authorization controls what authenticated users are allowed to do. This application implements Role-Based Access Control 
 (RBAC), where users are assigned roles, and these roles determine what resources and actions they can access.
@@ -198,7 +207,7 @@ This API allows new users to register with their personal details. The password 
 Request Body:
 
 json
-Copy code
+
 {
     "firstName": "Vijay",
     "lastName": "Patil",
@@ -211,7 +220,7 @@ Copy code
 Response:
 
 json
-Copy code
+
 {
     "message": "User registered successfully!"
 }
@@ -220,18 +229,15 @@ Copy code
 2. User Login (POST /user/login)
 Users authenticate by providing their email and password. If successful, a JWT token is returned.
 
-Request Body:
+Request Body: json
 
-json
-Copy code
 {
     "emailId": "vijay@example.com",
     "password": "Om12345678"
 }
-Response:
+Response:json
 
-json
-Copy code
+
 {
     "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9..."
 }
@@ -240,15 +246,12 @@ Copy code
 3. User Profile (POST /user/profile)
 This endpoint returns the profile of the authenticated user. The JWT token is sent in the request header for authentication.
 
-Request Header:
+Request Header:makefile
 
-makefile
-Copy code
 Authorization: <JWT_TOKEN>
-Response:
+Response:json
 
-json
-Copy code
+
 {
     "emailId": "vijay@example.com",
     "firstName": "Vijay",
@@ -262,15 +265,15 @@ Copy code
 The user sends the JWT token in the header, and the system removes it from the active session, invalidating the token.
 
 Request Header:
-
 makefile
-Copy code
-Logout: <JWT_TOKEN>
-Response:
 
+
+Logout: <JWT_TOKEN>
+
+Response:
 json 
 
-Copy code
+
 {
     "message": "User logged out successfully!"
 }
