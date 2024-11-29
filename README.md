@@ -217,6 +217,7 @@ json
     "gender": "male",
     "role": "user"
 }
+
 Response:
 
 json
@@ -235,6 +236,7 @@ Request Body: json
     "emailId": "vijay@example.com",
     "password": "Om12345678"
 }
+
 Response:json
 
 
@@ -271,6 +273,7 @@ makefile
 Logout: <JWT_TOKEN>
 
 Response:
+
 json 
 
 
