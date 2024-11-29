@@ -8,10 +8,12 @@ The Role-Based Access Control (RBAC) system is a robust authentication and autho
  managing user roles and permissions while enabling flexible, scalable user management.
 
 Key Features
+
 User Registration:
 
 New users can register with essential details such as their first name, last name, email, mobile number,
  password, gender, and role.
+
 Passwords are securely encrypted using BCrypt hashing for secure storage.
 The system assigns roles such as user or admin, dictating what resources they can access.
 
@@ -37,28 +39,42 @@ Upon logout, the JWT token is removed from the active session, ensuring that it 
 
 
 Technologies Used
+
 Spring Boot: To build the backend API with minimal configuration.
+
 Spring Data JPA: For managing database interactions.
+
 H2 Database: An in-memory database for quick setup and testing.
+
 JWT (JSON Web Token): For managing stateless user authentication and authorization.
+
 Spring Security (custom implementation): Used for ensuring security with JWT-based authentication and role management.
+
 BCrypt: A cryptographic algorithm used for securely hashing passwords.
+
 Bouncy Castle: To enhance cryptographic operations.
 
 Database Configuration
+
 This project uses H2 Database for local storage in development:
 
 
-properties
+
 
 spring.datasource.url=jdbc:h2:mem:h2db:testdb
+
 spring.datasource.driver-class-name=org.h2.Driver
+
 spring.datasource.username=sa
+
 spring.datasource.password=
 
 spring.jpa.hibernate.ddl-auto=create
+
 spring.jpa.show-sql=true
+
 spring.h2.console.enabled=true
+
 spring.h2.console.path=/h2-console
 
 The H2 console is enabled at /h2-console, allowing you to interact with the database via a web interface.
@@ -121,6 +137,7 @@ xml
 These dependencies support JWT, H2 database operations, and other essential Spring Boot functionalities.
 
 Authentication and Authorization
+
 Authentication
 Authentication verifies the identity of a user by comparing provided credentials with stored data. 
 This application uses JWT to manage user authentication. When users log in with their credentials (email and password),
@@ -139,7 +156,7 @@ Login API (POST /user/login)
 
 Request Body:
 
-json
+
 {
     "emailId": "user@example.com",
     "password": "password123"
@@ -148,7 +165,6 @@ json
 
 Response:
 
-json
 {
     "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9..."
 }
@@ -206,7 +222,7 @@ This API allows new users to register with their personal details. The password 
 
 Request Body:
 
-json
+
 
 {
     "firstName": "Vijay",
@@ -220,7 +236,6 @@ json
 
 Response:
 
-json
 
 {
     "message": "User registered successfully!"
@@ -230,14 +245,14 @@ json
 2. User Login (POST /user/login)
 Users authenticate by providing their email and password. If successful, a JWT token is returned.
 
-Request Body: json
+Request Body: 
 
 {
     "emailId": "vijay@example.com",
     "password": "Om12345678"
 }
 
-Response:json
+Response:
 
 
 {
@@ -267,14 +282,12 @@ Response:json
 The user sends the JWT token in the header, and the system removes it from the active session, invalidating the token.
 
 Request Header:
-makefile
+{
+    "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9..."
+}
 
-
-Logout: <JWT_TOKEN>
 
 Response:
-
-json 
 
 
 {
