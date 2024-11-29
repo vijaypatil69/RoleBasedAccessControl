@@ -50,15 +50,15 @@ Technologies Used
 
 This project uses H2 Database for local storage in development:
 
-spring.datasource.url=jdbc:h2:mem:h2db:testdb
-spring.datasource.driver-class-name=org.h2.Driver
-spring.datasource.username=sa
-spring.datasource.password=
+* spring.datasource.url=jdbc:h2:mem:h2db:testdb
+* spring.datasource.driver-class-name=org.h2.Driver
+* spring.datasource.username=sa
+* spring.datasource.password=
 
-spring.jpa.hibernate.ddl-auto=create
-spring.jpa.show-sql=true
-spring.h2.console.enabled=true
-spring.h2.console.path=/h2-console
+* spring.jpa.hibernate.ddl-auto=create
+* spring.jpa.show-sql=true
+* spring.h2.console.enabled=true
+* spring.h2.console.path=/h2-console
 
 The H2 console is enabled at /h2-console, allowing you to interact with the database via a web interface.
 
@@ -166,15 +166,6 @@ When a user logs in, the application compares the entered password with the hash
 Password Hashing in Registration:
 
 
-@Autowired
-private BCryptPasswordEncoder passwordEncoder;
-
-public String registerUser(UserRequestBody userRequestBody) {
-    String hashedPassword = passwordEncoder.encode(userRequestBody.getPassword());
-    userRepository.save(new User(userRequestBody, hashedPassword));
-    return "User registered successfully!";
-}
-
 
 * Authorization
 Authorization controls what authenticated users are allowed to do. This application implements Role-Based Access Control 
@@ -203,11 +194,7 @@ API Endpoints
 1. User Registration (POST /user/register)
 This API allows new users to register with their personal details. The password is securely hashed before being saved.
 
-Request Body:
-
-
-
-{
+Request Body: {
     "firstName": "Vijay",
     "lastName": "Patil",
     "emailId": "vijay@example.com",
@@ -217,10 +204,7 @@ Request Body:
     "role": "user"
 }
 
-Response:
-
-
-{
+Response: {
     "message": "User registered successfully!"
 }
 
@@ -228,16 +212,12 @@ Response:
 2. User Login (POST /user/login)
 Users authenticate by providing their email and password. If successful, a JWT token is returned.
 
-Request Body: 
-
-{
+Request Body:  {
     "emailId": "vijay@example.com",
     "password": "Om12345678"
 }
 
 Response:
-
-
 {
     "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9..."
 }
@@ -249,9 +229,7 @@ This endpoint returns the profile of the authenticated user. The JWT token is se
 Request Header:makefile
 
 Authorization: <JWT_TOKEN>
-Response:json
-
-
+Response:
 {
     "emailId": "vijay@example.com",
     "firstName": "Vijay",
