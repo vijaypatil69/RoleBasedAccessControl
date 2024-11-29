@@ -246,11 +246,15 @@ Copy code
 Logout: <JWT_TOKEN>
 Response:
 
-json
+json 
+
 Copy code
 {
     "message": "User logged out successfully!"
 }
+
+
+
 Conclusion
 This RBAC system provides a highly secure framework for user management in modern web applications. 
 By leveraging JWT for stateless authentication and BCrypt for password hashing, it ensures that users' identities and 
